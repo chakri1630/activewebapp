@@ -24,3 +24,5 @@ bin/
 target/
 
 .springbeans
+
+activemq-data
