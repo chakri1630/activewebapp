@@ -15,7 +15,10 @@
 	Normal call : <input type="submit" name="order"/>
 </form>
 
-Ajax call : <button type="button" id="customerInfo">Get Customer info</button>
+Customer Information : <button type="button" id="customerInfo">Get Customer info</button>
+<br><br>
+
+Order Information <button type="button" id="orderInfo">Get Order info</button>
 
 <br><br><br>
 

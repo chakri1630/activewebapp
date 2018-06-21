@@ -1,19 +1,21 @@
 package com.activeweb.app.controllers;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.activeweb.app.beans.Credentials;
 
 /**
  * Handles requests for the application home page.
  */
+@RequestMapping(value="/activeweb")
 @Controller
 public class HomeController {
 
@@ -22,23 +24,30 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(value = "/submit", method = RequestMethod.POST)
+	public String login(@RequestBody Credentials credentials, Locale locale, Model model) {
 		logger.error("Welcome home! The client locale is {}.", locale);
 
 		try {
-			Date date = new Date();
-			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
-			String formattedDate = dateFormat.format(date);
+			// return success by calling db..
 
-			model.addAttribute("serverTime", formattedDate);
 		} catch (Exception e) {
 			logger.error("Somebody got an error page");
 			return "error";
 		}
 
 		return "home";
+	}
+
+	/**
+	 * Simply selects the login view to render by returning its name.
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.error("Welcome home! The client locale is {}.", locale);
+
+		return "login";
 	}
 
 }

@@ -5,19 +5,20 @@ $(document).ready(function() {
     	
     	$.ajax({
     		   url: 'customerInfo',
-    		   data: {
-    		      format: 'json'
-    		   },
     		   error: function() {
     		      $('#info').html('<p>An error has occurred</p>');
     		   },
-    		   dataType: 'jsonp',
+    		   dataType: 'json',
     		   success: function(data) {
-    			   $('#info').html('Customer Info is...');
+    			   $('#info').innerHTML = 'Customer Info is...'+JSON.stringify(data);
     		   },
     		   type: 'POST'
     		});
     	
+    });
+    
+    $("#orderInfo").click(function(){
+    	$.get('orderInfo');
     });
     
     
